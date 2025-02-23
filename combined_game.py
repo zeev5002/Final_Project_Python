@@ -31,9 +31,9 @@ SCORE = 0 # הניקוד הגלובלי (כברירת מחדל מתחיל ב-0)
 POINTS_PER_HIT = 2 # נקודות שהשחקן מקבל על פגיעה באויב
 POINTS_PER_ESCAPE = 1 # נקודות אם אויב בורח מהמסך למטה מבלי לפגוע בשחקן
 
-BACKGROUND = pygame.transform.scale(
-    pygame.image.load(os.path.join('Assets', 'myBackgr.jpg')),  # טוען רקע
-    (WIDTH, HEIGHT)) # מותאם לגודל המסך
+BACKGROUND = pygame.transform.scale(# מותאם לגודל המסך
+    pygame.image.load(os.path.join('Assets', 'myBackgr.jpg')),  # טוען תמונה מתוך קובץ
+    (WIDTH, HEIGHT)) 
 
 PLAYER_IMAGE_RAW = pygame.image.load(os.path.join('Assets', 'player.png')) # טעינת תמונת השחקן
 PLAYER_IMAGE = pygame.transform.scale(PLAYER_IMAGE_RAW, (PLAYER_SIZE, PLAYER_SIZE)) # שינוי גודל השחקן
@@ -60,7 +60,7 @@ FONT = pygame.font.SysFont('comicsans', 30) # גופן בסיסי בגודל 30
 BIG_FONT = pygame.font.SysFont('comicsans', 60) # גופן גדול בגודל 60
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT)) # יצירת חלון המשחק ברזולוציה המתאימה
-pygame.display.set_caption("Combined Game - Tank Version") # כותרת החלון
+pygame.display.set_caption("Combined Game - Tank Version") # קובע את כותרת החלון
 clock = pygame.time.Clock()  # שעון המשמש להגבלת FPS
 
 def set_level(score):
@@ -77,7 +77,7 @@ def set_level(score):
 def draw_centered_text(surface, text, font, color, y):
     render = font.render(text, True, color) # מייצר אובייקט טקסט
     text_width = render.get_width() # בודק את רוחב הטקסט
-    x = (WIDTH - text_width) // 2 # חישוב נקודת הציור באמצע המסך
+    x = (WIDTH - text_width) // 2 # חישוב באמצע המסך
     surface.blit(render, (x, y)) # מייצר את הטקסט במיקום המחושב
 
 def draw_text(surface, text, font, color, x, y):
@@ -94,7 +94,7 @@ def drop_enemies(enemy_list, enemy_size, current_max_enemies):
         enemy_list.append([x_pos, y_pos]) # מוסיף לרשימת האויבים
 
 def draw_enemies(surface, enemy_list, enemy_size):
-    # מצייר את כל האויבים מהרשימה (לפי הקואורדינטות שלהם)
+    # מייצר את כל האויבים מהרשימה
     for enemy_pos in enemy_list:
         surface.blit(ENEMY_IMAGE, (enemy_pos[0], enemy_pos[1]))
 
@@ -109,10 +109,10 @@ def update_enemy_positions(enemy_list, enemy_size, score, player_rect, lives, en
     new_enemy_list = []
     for enemy_pos in enemy_list:
         enemy_rect = pygame.Rect(enemy_pos[0], enemy_pos[1], enemy_size, enemy_size)
-        # בודקים התנגשות בין מלבן האויב למלבן השחקן (player_rect)
+        # בודק התנגשות בין מלבן האויב למלבן השחקן (player_rect)
         if player_rect.colliderect(enemy_rect):
             lives -= 1 # פגיעה בשחקן
-            NO_SOUND.play() # צליל פסילה
+            NO_SOUND.play() # השמעתצליל פסילה
         else:
             new_enemy_list.append(enemy_pos)
 
