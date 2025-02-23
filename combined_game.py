@@ -52,7 +52,7 @@ GAME_OVER_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Game_Over_Sound.mp3
 
 GAME_OVER_BG = pygame.transform.scale(
     pygame.image.load(os.path.join('Assets', 'game_over.JPG')),  #טעינת רקע למסך ה Game Over
-    (WIDTH, HEIGHT)  # מקננים לגודל המסך
+    (WIDTH, HEIGHT)  # מותאם לגודל המסך
 )
 
 pygame.font.init()  # אתחול של פונקציות הפונט
