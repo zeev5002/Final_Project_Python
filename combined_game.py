@@ -71,7 +71,7 @@ def set_level(score):
     base_enemies = 5 # כמות אויבים בסיסית
     increments = score // 50  # כמה פעמים עברת 50 נקודות 
     new_speed = base_speed + increments * 5 # בכל מעבר 50 נק' מגדיל ב-5
-    new_max_enemies = base_enemies + increments * 5 # וכן לכמות האויבים
+    new_max_enemies = base_enemies + increments * 5 # מגדיל את כמות האויבים ב
     return new_speed, new_max_enemies
 
 def draw_centered_text(surface, text, font, color, y):
